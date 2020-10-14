@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import './database/connections';
 
 const app= express();
 
