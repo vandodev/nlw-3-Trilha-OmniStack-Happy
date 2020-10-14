@@ -2,10 +2,12 @@ import express, { json } from 'express';
 
 const app= express();
 
-app.get('/users',(request, response) => {
-    //console.log('Teste');
-    //return response.send('Olá mundo');
-    return response.json({message:'Olá mundo'});
+app.use(express.json);
+
+app.get('/users/:id',(request, response) => {
+    console.log(request.query);
+    console.log(request.params);
+    console.log(request.body);
 });
 
 app.listen(3333);
