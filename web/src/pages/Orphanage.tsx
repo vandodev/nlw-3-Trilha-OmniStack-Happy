@@ -5,7 +5,7 @@ import { Map, Marker, TileLayer } from "react-leaflet";
 
 import '../styles/pages/orphanage.css';
 import Sidebar from "../components/Sidebar";
-import mapIcon from "../utils/maoIcon";
+import mapIcon from "../utils/mapIcon";
 
 
 export default function Orphanage() {
