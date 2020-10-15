@@ -62,7 +62,7 @@ const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
                                                                                   
                         >
                             <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
-                                {Orphanage.name}
+                                {orphanage.name}
                                 <Link to={`/orphanages/${orphanage.id}`}>
                                    <FiArrowRight size={20} color="#fff"/>
                                 </Link>
