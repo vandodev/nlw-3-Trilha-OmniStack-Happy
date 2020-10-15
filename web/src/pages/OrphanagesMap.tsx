@@ -6,7 +6,6 @@ import '../styles/pages/orphanages-map.css';
 import mapMarkerImg from '../images/map-marker.svg';
 
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
-import 'leaflet/dist/leaflet.css'; 
 import mapIcon from '../utils/mapIcon';
 
 
