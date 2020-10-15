@@ -28,7 +28,7 @@ export default {
     },
 
     async create(request:Request, response:Response){
-        console.log(request.files);
+        //console.log(request.files);
         const {
             name, 
             latitude,
@@ -56,11 +56,12 @@ export default {
         opening_hours,
         open_on_weekends,
         images
-    }
+    };
 
     const schema = yup.object().shape({
         name: yup.string().required('Nome obrigatório'),
         latitude: yup.number().required(),
+        longitude:yup.number().required(),
         about: yup.string().required().max(300),
         instructions: yup.string().required(),
         opening_hours: yup.string().required(),
@@ -75,7 +76,7 @@ export default {
 
     await schema.validate(data, {
         abortEarly:false,
-    })
+    });
 
     const orphanage = orphanagesRepository.create(data);
     
