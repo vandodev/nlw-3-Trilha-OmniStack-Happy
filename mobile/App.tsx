@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
-import MapView, {Marker ,PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {Marker ,Callout, PROVIDER_GOOGLE} from 'react-native-maps';
 
 import mapMarker from './src/images/map-marker.png';
 
@@ -23,8 +23,14 @@ export default function App() {
           coordinate={{
             latitude:-20.7305509,
             longitude: -48.0491994,
-          }}
-        />
+          }}>
+
+          <Callout>
+            <Text>lar das meninas</Text>
+          </Callout>
+
+        </Marker>
+        
 
       </MapView>
 
