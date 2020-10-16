@@ -20,13 +20,19 @@ export default function App() {
       >
         <Marker
           icon={mapMarker}
+          calloutAnchor={{
+            x:2.7,
+            y:0.8,
+          }}
           coordinate={{
             latitude:-20.7305509,
             longitude: -48.0491994,
           }}>
 
-          <Callout>
-            <Text>lar das meninas</Text>
+          <Callout tooltip onPress={() =>{alert('oi')}}>
+            <View style={styles.calloutContainer}>
+              <Text style={styles.calloutText}>Lar das meninas</Text>
+            </View>
           </Callout>
 
         </Marker>
@@ -47,4 +53,19 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
   },
+
+  calloutContainer:{
+    width:160,
+    height:46,
+    paddingHorizontal:16,
+    backgroundColor:'rgba(255,255,255, 0.8)',
+    borderRadius:16,
+    justifyContent:"center",
+  },
+
+  calloutText:{
+    color: '#0089a5',
+    fontSize:14,
+  },
+
 });
