@@ -7,7 +7,7 @@ import Routes from './src/routes';
 export default function App() {
   const [fontsLoader] = useFonts({
     Nunito_600SemiBold,
-    Nunito700:Nunito_700Bold,
+    Nunito_700Bold,
     Nunito_800ExtraBold,
   });
 
