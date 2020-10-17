@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import {Feather} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import mapMarker from '../images/map-marker.png';
 import MapView, {Marker ,Callout, PROVIDER_GOOGLE} from 'react-native-maps';
 import { RectButton } from 'react-native-gesture-handler';
+import api from '../services/api';
+
+interface Orphanage{
+  id:number;
+  name:string;
+  latitude:number;
+  longitude:number;
+
+}
 
 export default function OprphanagesMap(){
+  const[orphanages, setOrphanages] = useState<Orphanage[]>([]);
   const navigation = useNavigation();
+
+  console.log(orphanages);
+
+  useEffect(() => {
+    api.get('/orphanages').then(response => {
+      setOrphanages(response.data);
+    });
+  }, [])
 
   function handleNavigateToOrphanageDatails(){
    navigation.navigate('OrphanageDatails')
@@ -30,26 +48,33 @@ export default function OprphanagesMap(){
         longitudeDelta: 0.008,
       }}
     >
-      <Marker
-        icon={mapMarker}
-        calloutAnchor={{
-          x:2.7,
-          y:0.8,
-        }}
-        coordinate={{
-          latitude:-20.7305509,
-          longitude: -48.0491994,
-        }}>
+      {orphanages.map(orphanage => {
+        
+        return(
+          <Marker
+            key={orphanage.id}
+            icon={mapMarker}
+            calloutAnchor={{
+              x:2.7,
+              y:0.8,
+            }}
+            coordinate={{
+              latitude:orphanage.latitude,
+              longitude:orphanage.longitude,
+            }}>
 
-        <Callout tooltip onPress={handleNavigateToOrphanageDatails}>
-          
-          <View style={styles.calloutContainer}>
-            <Text style={styles.calloutText}>Lar das meninas</Text>
-          </View>
-        </Callout>
+            <Callout tooltip onPress={handleNavigateToOrphanageDatails}>
+              
+              <View style={styles.calloutContainer}>
+               <Text style={styles.calloutText}>{orphanage.name}</Text>
+              </View>
+            </Callout>
 
-      </Marker>
+          </Marker>
+        );
+      })}
       
+           
     </MapView>
 
     <View style={styles.footer}> 
@@ -109,7 +134,7 @@ const styles = StyleSheet.create({
 
   footerText:{
     color:'#8fa7b3',
-    fontFamily:'Nunito700',
+    fontFamily:'Nunito_700Bold',
   },
 
   createOrphanageButton:{
